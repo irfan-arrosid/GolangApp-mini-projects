@@ -1,14 +1,22 @@
 package main
 
 import (
-	"GolangApp-mini-projects/go-restapi-gin/models"
+	"fmt"
+	"os"
 
-	"github.com/gin-gonic/gin"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func main() {
-	r := gin.Default()
-	models.DB.Connection()
+	// var err error
+	db, err := gorm.Open(postgres.Open(os.Getenv("DB_URL")), &gorm.Config{})
 
-	r.Run()
+	if err != nil {
+		fmt.Println("Failed to connect database!")
+	} else {
+		fmt.Println("Database connected....")
+	}
+
+	db.Raw("SELECT * FROM mens_shoes")
 }
