@@ -1,22 +1,27 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
-func main() {
-	// var err error
-	db, err := gorm.Open(postgres.Open(os.Getenv("DB_URL")), &gorm.Config{})
-
+func init() {
+	err := godotenv.Load()
 	if err != nil {
-		fmt.Println("Failed to connect database!")
-	} else {
-		fmt.Println("Database connected....")
+		log.Fatal("Error loading .env file")
 	}
+}
 
-	db.Raw("SELECT * FROM mens_shoes")
+func main() {
+	r := gin.Default()
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Welcome to Gin Framework!",
+		})
+	})
+
+	r.Run()
 }

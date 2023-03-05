@@ -1,38 +1,23 @@
 package models
 
 import (
-	"github.com/jinzhu/gorm"
-	"github.com/lib/pq"
+	"fmt"
+	"os"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-// var DB *gorm.DB
-
-// func dbConnect() {
-// 	dsn := "postgres://irfanarrosid:at19ir97ar@localhost:5432/restapi-gin"
-// 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-
-// 	if err != nil {
-// 		panic("Failed to connect database")
-// 	}
-
-// 	db.AutoMigrate(&Product{})
-
-// 	DB = db
-// }
-
-type Product struct {
-	Id   int64  `gorm:"primaryKey" json:"id"`
-	Name string `gorm:"type:varchar(255)" json:"productName"`
-	desc string `gorm:"type:text" json:"desc"`
-}
+var DB *gorm.DB
 
 func dbConnect() {
-	db, err := gorm.Open("postgres", "host=localhost port=5432 user=irfanarrosid dbname=restapi-gin password=at19ir97ar sslmode=disable")
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
+	db, err := gorm.Open(postgres.Open(os.Getenv("DB_URL")), &gorm.Config{})
 
-	var Products []Product
-	db.Find(&Products)
+	if err != nil {
+		fmt.Println("Failed to connect database!")
+	} else {
+		fmt.Println("Database connected....")
+	}
+
+	DB = db
 }
