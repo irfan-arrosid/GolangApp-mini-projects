@@ -10,7 +10,7 @@ import (
 
 var DB *gorm.DB
 
-func dbConnect() {
+func DbConnect() {
 	db, err := gorm.Open(postgres.Open(os.Getenv("DB_URL")), &gorm.Config{})
 
 	if err != nil {

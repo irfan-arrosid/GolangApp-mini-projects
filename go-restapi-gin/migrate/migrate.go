@@ -1,11 +1,8 @@
 package main
 
 import (
-	"GolangApp-mini-projects/go-restapi-gin/controllers"
 	"GolangApp-mini-projects/go-restapi-gin/initializers"
 	"GolangApp-mini-projects/go-restapi-gin/models"
-
-	"github.com/gin-gonic/gin"
 )
 
 func init() {
@@ -14,9 +11,5 @@ func init() {
 }
 
 func main() {
-	r := gin.Default()
-
-	r.GET("/", controllers.PostsCreate)
-
-	r.Run()
+	models.DB.AutoMigrate(&models.Post{})
 }
