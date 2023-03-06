@@ -17,6 +17,8 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/posts", controllers.PostsCreate)
+	r.GET("/posts", controllers.PostsIndex)
+	// Go to 25:06 on the video
 
 	r.Run()
 }
