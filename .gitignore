@@ -1,2 +1,3 @@
 /go-playground
 /go-restapi-gin/.env
+/go-jwt-auth/.env
