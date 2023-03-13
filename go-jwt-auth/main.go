@@ -1,6 +1,7 @@
 package main
 
 import (
+	"GolangApp-mini-projects/go-jwt-auth/controllers"
 	"GolangApp-mini-projects/go-jwt-auth/initializers"
 
 	"github.com/gin-gonic/gin"
@@ -14,13 +15,9 @@ func init() {
 func main() {
 	r := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	r.POST("/signup", controllers.UserSignUp)
 
 	r.Run()
 }
 
-// See in 11:10 on the video
+// See in 17:38 on the video
