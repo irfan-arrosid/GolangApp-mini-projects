@@ -121,3 +121,9 @@ func UserLogin(c *gin.Context) {
 		"message": "Login is success",
 	})
 }
+
+func Validate(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"message": "I'm logged in",
+	})
+}
