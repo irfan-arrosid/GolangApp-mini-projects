@@ -22,5 +22,3 @@ func main() {
 
 	r.Run()
 }
-
-// See in 27:00 on the video
