@@ -21,6 +21,12 @@ func main() {
 	}
 
 	log.Println("Redis connected....")
+
+	if err := c.Set(ctx, "user:name", "Atira", 0); err != nil {
+		log.Println("Error: could not store a value to Redis")
+	}
+
+	log.Println("Value stored to Redis")
 }
 
 // Go to video on 7:30
