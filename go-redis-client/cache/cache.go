@@ -28,3 +28,7 @@ func (c *Cache) Ping(ctx context.Context) error {
 func (c *Cache) Set(ctx context.Context, key string, value interface{}, ttl time.Duration) error {
 	return c.Client.Set(ctx, key, value, ttl).Err()
 }
+
+func (c *Cache) Get(ctx context.Context, key string) (string, error) {
+	return c.Client.Get(ctx, key).Result()
+}

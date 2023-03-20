@@ -27,6 +27,11 @@ func main() {
 	}
 
 	log.Println("Value stored to Redis")
-}
 
-// Go to video on 7:30
+	res, err := c.Get(ctx, "user:name")
+	if err != nil {
+		log.Println("Error: could not get a value from Redis")
+	}
+
+	log.Println("Result:", res)
+}
