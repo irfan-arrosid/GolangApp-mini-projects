@@ -1,6 +1,10 @@
 package cache
 
-import "github.com/redis/go-redis/v9"
+import (
+	"context"
+
+	"github.com/redis/go-redis/v9"
+)
 
 type Cache struct {
 	*redis.Client
@@ -14,4 +18,8 @@ func NewCache(addr string, password string, db int) *Cache {
 	})
 
 	return &Cache{client}
+}
+
+func (c *Cache) Ping(ctx context.Context) error {
+	return c.Client.Ping(ctx).Err()
 }
